@@ -210,7 +210,7 @@ class Polycast_Filter_ImageSize implements Zend_Filter_Interface
         if ($this->getConfig()->getOverwriteMode() == self::OVERWRITE_CACHE_OLDER) {
             
             $outputPath = $this->_getOutputPathOfCurrentFile();
-            if (filemtime($this->_inputFilename) < filemtime($outputPath)) {
+            if (file_exists($outputPath) && filemtime($this->_inputFilename) < filemtime($outputPath)) {
                 return true;
             }
         }
